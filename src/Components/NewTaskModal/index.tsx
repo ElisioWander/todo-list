@@ -33,7 +33,7 @@ export function NewTaskModal({
               <input
                 id="task"
                 type="text"
-                className="px-4 py-2 rounded-md bg-zinc-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 dark:focus:ring-offset-zinc-900 "
+                className="px-4 py-2 rounded-md dark:text-zinc-200 bg-zinc-200 dark:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 dark:focus:ring-offset-zinc-800 "
                 value={newTask}
                 onChange={(e) => setNewTask(e.target.value)}
                 maxLength={30}

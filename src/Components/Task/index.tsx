@@ -13,7 +13,7 @@ export function Task({ task, handleDeleteTask }: TaskProps) {
 
   return (
     <>
-      <li className="w-full py-3 px-6 flex items-center relative justify-between hover:brightness-90 transition-all text-zinc-500 dark:text-zinc-200 shadow-sm rounded-full mb-4 bg-white dark:bg-zinc-800 animate-goTop ">
+      <li className="w-full py-3 px-6 flex items-center relative justify-between hover:brightness-90 transition-all duration-500 text-zinc-500 dark:text-zinc-200 shadow-sm rounded-full mb-4 bg-white dark:bg-zinc-800 animate-goTop ">
         <FaTrashAlt
           fontSize={15}
           className="cursor-pointer hover:brightness-75 transition-all"

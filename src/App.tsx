@@ -32,7 +32,7 @@ function App() {
 
   return (
     <>
-      <div className="w-full h-screen max-w-[420px] relative bg-zinc-100 dark:bg-zinc-900 ">
+      <div className="w-full h-screen max-w-[420px] relative bg-zinc-100 dark:bg-zinc-900 transition-all duration-500 ">
         <Header />
 
         <main>
