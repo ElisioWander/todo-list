@@ -5,8 +5,10 @@ import { Task } from "./Components/Task";
 import { useNewTaskModal } from "./Context/NewTaskModalContext";
 import "./global.css";
 
+const defaultTasks = ['Choose your task', 'Check your task', 'Delete your task']
+
 function App() {
-  const [tasks, setTasks] = useState<string[]>([]);
+  const [tasks, setTasks] = useState<string[]>(defaultTasks);
   const [newTask, setNewTask] = useState('')
   const { handleCloseModal } = useNewTaskModal();
 

@@ -18,7 +18,7 @@ export function NewTaskModal({
     <>
       {toggleModal && (
         <div className="w-full h-full flex items-center justify-center absolute top-0 left-0 bottom-0 right-0 bg-zinc-900 bg-opacity-75 animate-goVisible ">
-          <div className="w-4/5 p-5 rounded-md bg-white">
+          <div className="w-[90%] p-5 rounded-md bg-white">
             <h1 className="text-center text-xl text-zinc-700 font-semibold">
               Whats your new task?
             </h1>
@@ -36,7 +36,7 @@ export function NewTaskModal({
                 maxLength={30}
               />
             </div>
-            <div className="px-5 flex gap-2 text-white ">
+            <div className="flex gap-3 text-white ">
               <button
                 onClick={() => onCreateNewTask(newTask)}
                 className="w-full py-2 rounded-full bg-blue-500 hover:bg-blue-400 transition-all disabled:cursor-not-allowed disabled:hover:bg-blue-500 "
