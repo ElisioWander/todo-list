@@ -1,11 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: ["./src/**/*.tsx"],
   theme: {
     extend: {
       keyframes: {
         goTop: {
           '0%': { transform: 'translateY(200px)' },
+          '100%': { transform: 'translateY(0)' }
+        },
+        goBottom: {
+          '0%': { transform: 'translateY(-200px)' },
           '100%': { transform: 'translateY(0)' }
         },
         goVisible: {
@@ -15,6 +20,7 @@ module.exports = {
       },
       animation: {
         goTop: 'goTop 0.2s',
+        goBottom: 'goBottom 0.2s',
         goVisible: 'goVisible 0.3s'
       }
     },

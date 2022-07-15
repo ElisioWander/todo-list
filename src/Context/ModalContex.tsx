@@ -20,7 +20,7 @@ export function ModalContextProvider({ children }: ModalProvider) {
   }
 
   function handleCloseModal() {
-    setIsNewTaskModalOpen(false)
+    setIsNewTaskModalOpen(false);
   }
 
   return (
