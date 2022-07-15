@@ -1,5 +1,5 @@
 import React from "react";
-import { useNewTaskModal } from "../../Context/NewTaskModalContext";
+import { useModalContext } from "../../Context/ModalContex";
 
 interface NewTaskModalProps {
   newTask: string;
@@ -12,11 +12,11 @@ export function NewTaskModal({
   newTask,
   setNewTask,
 }: NewTaskModalProps) {
-  const { toggleModal, handleCloseModal } = useNewTaskModal();
+  const { isNewTaskModalOpen, handleCloseModal } = useModalContext()
 
   return (
     <>
-      {toggleModal && (
+      {isNewTaskModalOpen && (
         <div className="w-full h-full flex items-center justify-center absolute top-0 left-0 bottom-0 right-0 bg-zinc-900 bg-opacity-75 animate-goVisible ">
           <div className="w-[90%] p-5 rounded-md bg-white">
             <h1 className="text-center text-xl text-zinc-700 font-semibold">

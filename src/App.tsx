@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NewTaskButton } from "./Components/NewTaskButton";
 import { NewTaskModal } from "./Components/NewTaskModal";
 import { Task } from "./Components/Task";
-import { useNewTaskModal } from "./Context/NewTaskModalContext";
+import { useModalContext } from "./Context/ModalContex";
 import "./global.css";
 
 const defaultTasks = ['Choose your task', 'Check your task', 'Delete your task']
@@ -10,7 +10,8 @@ const defaultTasks = ['Choose your task', 'Check your task', 'Delete your task']
 function App() {
   const [tasks, setTasks] = useState<string[]>(defaultTasks);
   const [newTask, setNewTask] = useState('')
-  const { handleCloseModal } = useNewTaskModal();
+  
+  const { handleCloseModal } = useModalContext();
 
   function handleCreateNewTask() {
     setTasks((state) => [...state, newTask]);
