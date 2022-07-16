@@ -8,6 +8,7 @@ interface NewTaskModalProps {
 
 export function UpdateTaskModal({ handleUpdateTask, selectedTask }: NewTaskModalProps) {
   const [editedTask, setEditedTask] = useState('')
+  const [value, setValue] = useState(selectedTask)
 
   const { isUpdateTaskModalOpen, handleCloseModal } = useModalContext();
 
@@ -31,7 +32,7 @@ export function UpdateTaskModal({ handleUpdateTask, selectedTask }: NewTaskModal
                 id="task"
                 type="text"
                 className="px-4 py-2 rounded-md dark:text-zinc-200 bg-zinc-200 dark:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 dark:focus:ring-offset-zinc-800 "
-                value={selectedTask}
+                value={value}
                 onChange={(e) => setEditedTask(e.target.value)}
                 maxLength={30}
               />
