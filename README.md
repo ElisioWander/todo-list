@@ -3,11 +3,11 @@
 </h1>
 
 <h1 align="center">
-    <img src="public/assets/todo.list.gif" width="600px"> 
+    <img src="public/assets/todo.list" width="600px"> 
 </h1>
 
 ## 🏷️ Sobre 
-**Todo.Task**: Uma lista de tarefas simples onde você pode criar, marcar como finalizada e deletar uma tarefa.
+**Todo.Task**: Uma lista de tarefas simples onde você pode criar, marcar como finalizada, atualizar e deletar uma tarefa.
 
 ---
 
