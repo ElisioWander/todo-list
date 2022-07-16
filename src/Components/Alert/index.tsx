@@ -2,17 +2,18 @@ import React from "react";
 
 interface AlertProps {
   activeAlert: boolean;
-  task: string;
-  handleDeleteTask: (task: string) => void;
+  taskId: number;
+  handleDeleteTask: (taskId: number) => void;
   setActiveAlert: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function Alert({
   activeAlert,
   handleDeleteTask,
-  task,
+  taskId,
   setActiveAlert,
 }: AlertProps) {
+
   return (
     <>
       {activeAlert && (
@@ -33,7 +34,7 @@ export function Alert({
           <div className="flex gap-4 text-lg ">
             <button
               className="hover:underline underline-offset-2"
-              onClick={() => handleDeleteTask(task)}
+              onClick={() => handleDeleteTask(taskId)}
             >
               Yes
             </button>

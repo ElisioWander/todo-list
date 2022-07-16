@@ -3,31 +3,65 @@ import { Header } from "./Components/Header";
 import { NewTaskButton } from "./Components/NewTaskButton";
 import { NewTaskModal } from "./Components/NewTaskModal";
 import { Task } from "./Components/Task";
+import { UpdateTaskModal } from "./Components/UpdateTaskModal";
 import { useModalContext } from "./Context/ModalContex";
 import "./global.css";
 
 const defaultTasks = [
-  "Choose your task",
-  "Check your task",
-  "Delete your task",
-];
+  { id: 1, name: "Choose your task" },
+  { id: 2, name: "Check your task" },
+  { id: 3, name: "Delete your task" },
+]
+
+type TasksData = Array<{
+  id: number;
+  name: string;
+}>
+
+type Task = {
+  id: number;
+  name: string;
+}
 
 function App() {
-  const [tasks, setTasks] = useState<string[]>(defaultTasks);
-  const [newTask, setNewTask] = useState("");
+  const [tasks, setTasks] = useState<TasksData>(defaultTasks);
+  const [newTaskInputValue, setNewTaskInputValue] = useState('');
+  const [selectedTask, setSelectedTask] = useState<Task>()
 
   const { handleCloseModal } = useModalContext();
 
   function handleCreateNewTask() {
+    const taskId = Math.floor(Math.random() * 100)
+    const newTask = { id: taskId, name: newTaskInputValue }
+
     setTasks((state) => [...state, newTask]);
 
     handleCloseModal();
     //limpar o imput onde digita a nova tarefa
-    setNewTask("");
+    setNewTaskInputValue("");
   }
 
-  function handleDeleteTask(task: string) {
-    setTasks((state) => state.filter((allTasks) => allTasks !== task));
+  function handleUpdateTask(editedTask: string) {
+    let tasksArray = [...tasks]
+    
+    for(let i in tasksArray) {
+      if(tasksArray[i].id === selectedTask?.id) {
+        tasksArray[i].name = editedTask
+      }
+    }
+
+    setTasks(tasksArray)
+    handleCloseModal()
+  }
+
+  function handleDeleteTask(taskId: number) {
+    setTasks((state) => state.filter((allTasks) => allTasks.id !== taskId));
+  }
+
+  function handleGetSelectedTask(taskName: string, taskId: number) {
+    const selectedTask = { id: taskId, name: taskName }
+
+    setSelectedTask(selectedTask)
   }
 
   return (
@@ -38,8 +72,12 @@ function App() {
         <main>
           <ul className="p-3">
             {tasks?.map((task) => (
-              <div key={task}>
-                <Task task={task} handleDeleteTask={handleDeleteTask} />
+              <div key={task.id}>
+                <Task
+                  task={task}
+                  handleDeleteTask={handleDeleteTask}
+                  handleGetSelectedTask={handleGetSelectedTask}
+                />
               </div>
             ))}
           </ul>
@@ -48,9 +86,14 @@ function App() {
         </main>
 
         <NewTaskModal
+          newTaskInputValue={newTaskInputValue}
+          setNewTaskInputValue={setNewTaskInputValue}
           onCreateNewTask={handleCreateNewTask}
-          newTask={newTask}
-          setNewTask={setNewTask}
+        />
+
+        <UpdateTaskModal 
+          handleUpdateTask={handleUpdateTask}
+          selectedTask={selectedTask?.name}
         />
       </div>
     </>
