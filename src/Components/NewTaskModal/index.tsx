@@ -42,14 +42,14 @@ export function NewTaskModal({
             <div className="flex gap-3 text-white ">
               <button
                 onClick={() => onCreateNewTask(newTaskInputValue)}
-                className="w-full py-2 rounded-full bg-blue-500 hover:bg-blue-400 transition-all disabled:cursor-not-allowed disabled:hover:bg-blue-500 "
+                className="w-full py-2 rounded-full bg-blue-500 hover:bg-blue-400 transition-all disabled:cursor-not-allowed disabled:hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 dark:focus:ring-offset-zinc-800 "
                 disabled={newTaskInputValue.length === 0}
               >
                 Create
               </button>
               <button
                 onClick={handleCloseModal}
-                className="w-full py-2 rounded-full bg-gray-400 hover:brightness-75 transition-all "
+                className="w-full py-2 rounded-full bg-gray-400 hover:brightness-75 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 dark:focus:ring-offset-zinc-800 "
               >
                 Cancel
               </button>
