@@ -9,15 +9,15 @@ export function Header() {
       <span>All Tasks</span>
       <div>
         {theme ? (
-          <FaMoon
+          <FaSun
             fontSize={32}
-            className="cursor-pointer"
+            className="cursor-pointer text-zinc-400 "
             onClick={handleToggleTheme}
           />
         ) : (
-          <FaSun
+          <FaMoon
             fontSize={32}
-            className="cursor-pointer text-zinc-200 "
+            className="cursor-pointer text-zinc-700 "
             onClick={handleToggleTheme}
           />
         )}

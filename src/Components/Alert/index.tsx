@@ -18,7 +18,7 @@ export function Alert({
     <>
       {activeAlert && (
         <div
-          className="h-20 px-4 flex flex-col items-center justify-center gap-2 absolute top-0 left-0 right-0 bg-blue-500 text-white text-sm font-bold animate-goBottom "
+          className="h-20 px-4 flex flex-col items-center justify-center gap-2 fixed top-0 left-0 right-0 bg-blue-500 text-white text-sm font-bold animate-goBottom "
           role="alert"
         >
           <div className="flex">
