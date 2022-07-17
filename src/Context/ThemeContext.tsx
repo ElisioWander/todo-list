@@ -18,7 +18,7 @@ type ThemeContextData = {
 const ThemeContext = createContext({} as ThemeContextData);
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
-  const [theme, setTheme] = useState(false);
+  const [theme, setTheme] = useState(true);
 
   useEffect(() => {
     const rootElement = document.documentElement;

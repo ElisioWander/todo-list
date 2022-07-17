@@ -19,14 +19,20 @@ export function ModalContextProvider({ children }: ModalProvider) {
   const [isUpdateTaskModalOpen, setIsUpdateTaskModalOpen] = useState(false)
 
   function handleOpenNewTaskModal() {
+    document.body.style.overflow = !isUpdateTaskModalOpen ? "hidden" : "initial"
+
     setIsNewTaskModalOpen(!isNewTaskModalOpen);
   }
 
   function handleOpenUpdateTaskModal() {
+    document.body.style.overflow = !isNewTaskModalOpen ? "hidden" : "initial"
+
     setIsUpdateTaskModalOpen(!isUpdateTaskModalOpen);
   }
 
   function handleCloseModal() {
+    document.body.style.overflow = "initial"
+
     setIsNewTaskModalOpen(false);
     setIsUpdateTaskModalOpen(false)
   }
