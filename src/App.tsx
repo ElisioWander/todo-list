@@ -10,7 +10,8 @@ import "./global.css";
 const defaultTasks = [
   { id: 1, name: "Choose your task" },
   { id: 2, name: "Check your task" },
-  { id: 3, name: "Delete your task" },
+  { id: 3, name: "Update your task" },
+  { id: 4, name: "Delete your task" },
 ]
 
 type TasksData = Array<{
