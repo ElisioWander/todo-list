@@ -29,7 +29,7 @@ Foram utilizadas as seguintes tecnologias para desenvolver a aplicação **Todo.
     $ git clone https://github.com/ElisioWander/todo-list.git
 
     #entrar no diretório
-    $ cd todo.list
+    $ cd todo-list
 
     #instalar as dependências
     $ npm install
@@ -48,6 +48,7 @@ localhost:5173
 - Linkedin: [@elisioWander](https://www.linkedin.com/in/elisio-wander-b88b69136/)
 - Github: [@elisioWander](https://github.com/ElisioWander)
 - Site: [elisiowander.vercel.app](https://elisiowander.vercel.app)
+- Deploy: [todo-list](https://todo-task-list.vercel.app/)
 
 ---
 ## 📝 Licença
