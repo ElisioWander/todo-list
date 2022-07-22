@@ -1,18 +1,27 @@
-import React from "react";
-
 interface AlertProps {
   activeAlert: boolean;
-  taskId: number;
-  handleDeleteTask: (taskId: number) => void;
-  setActiveAlert: React.Dispatch<React.SetStateAction<boolean>>;
+  onDeleteTask: () => void;
+  onCloseAlert: () => void;
 }
 
-export function Alert({
-  activeAlert,
-  handleDeleteTask,
-  taskId,
-  setActiveAlert,
-}: AlertProps) {
+export function Alert({ activeAlert, onDeleteTask, onCloseAlert }: AlertProps) {
+  const deleteTaskButton = (
+    <button
+      className="hover:underline underline-offset-2"
+      onClick={onDeleteTask}
+    >
+      Yes
+    </button>
+  );
+
+  const closeAlertButton = (
+    <button
+      className="hover:underline underline-offset-2"
+      onClick={onCloseAlert}
+    >
+      No
+    </button>
+  );
 
   return (
     <>
@@ -32,18 +41,8 @@ export function Alert({
             <p>Are you sure you want to delete?</p>
           </div>
           <div className="flex gap-4 text-lg ">
-            <button
-              className="hover:underline underline-offset-2"
-              onClick={() => handleDeleteTask(taskId)}
-            >
-              Yes
-            </button>
-            <button
-              className="hover:underline underline-offset-2"
-              onClick={() => setActiveAlert(false)}
-            >
-              No
-            </button>
+            {deleteTaskButton}
+            {closeAlertButton}
           </div>
         </div>
       )}

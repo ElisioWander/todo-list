@@ -14,7 +14,7 @@ export default {
   // cacheDirectory: "/tmp/jest_rs",
 
   // Automatically clear mock calls, instances, contexts and results before every test
-  // clearMocks: false,
+  clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
   // collectCoverage: false,
@@ -176,6 +176,7 @@ export default {
 
   // A map from regular expressions to paths to transformers
   transform: {
+    ".+\\.(css|styl|less|sass|scss)$": "jest-transform-css",
     "^.+\\.(t|j)sx?$": [
       "@swc/jest",
       {

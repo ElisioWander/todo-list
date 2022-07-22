@@ -38,7 +38,7 @@ Foram utilizadas as seguintes tecnologias para desenvolver a aplicação **Todo.
     $ npm run dev
 ```
 ### Servidor local
-localhost:5173
+localhost:3000
 
 ---
 
@@ -48,7 +48,11 @@ localhost:5173
 - Linkedin: [@elisioWander](https://www.linkedin.com/in/elisio-wander-b88b69136/)
 - Github: [@elisioWander](https://github.com/ElisioWander)
 - Site: [elisiowander.vercel.app](https://elisiowander.vercel.app)
+<<<<<<< HEAD
 - Deploy: [todo-list](https://todo-task-list.vercel.app/)
+=======
+- Deploy: [Todo.Task](https://todo-task-list.vercel.app/)
+>>>>>>> 4829016 (refatoring)
 
 ---
 ## 📝 Licença

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Header } from "./Components/Header";
 import { NewTaskButton } from "./Components/NewTaskButton";
 import { NewTaskModal } from "./Components/NewTaskModal";
@@ -32,7 +32,7 @@ function App() {
   const { handleCloseModal } = useModalContext();
 
   function handleCreateNewTask() {
-    const taskId = Math.floor(Math.random() * 100)
+    const taskId = Math.random()
     const newTask = { id: taskId, name: newTaskInputValue }
 
     setTasks((state) => [...state, newTask]);
@@ -59,11 +59,23 @@ function App() {
     setTasks((state) => state.filter((allTasks) => allTasks.id !== taskId));
   }
 
-  function handleGetSelectedTask(taskName: string, taskId: number) {
-    const selectedTask = { id: taskId, name: taskName }
-
+  function handleGetSelectedTask(selectedTask: Task) {
     setSelectedTask(selectedTask)
   }
+
+  function handleGetNewTaskInputValue(event: ChangeEvent<HTMLInputElement>) {
+    const inputValue = event.target.value
+    setNewTaskInputValue(inputValue)
+  }
+
+  const parsedTasks = tasks.map(task => (
+    <Task
+      key={task.name}
+      task={task}
+      onDeleteTask={handleDeleteTask}
+      onGetSelectedTask={handleGetSelectedTask}
+    />
+  ))
 
   return (
     <>
@@ -72,15 +84,7 @@ function App() {
 
         <main>
           <ul className="p-3">
-            {tasks?.map((task) => (
-              <div key={task.id}>
-                <Task
-                  task={task}
-                  handleDeleteTask={handleDeleteTask}
-                  handleGetSelectedTask={handleGetSelectedTask}
-                />
-              </div>
-            ))}
+            {parsedTasks}
           </ul>
 
           <NewTaskButton />
@@ -88,13 +92,12 @@ function App() {
 
         <NewTaskModal
           newTaskInputValue={newTaskInputValue}
-          setNewTaskInputValue={setNewTaskInputValue}
+          onGetNewTaskInputValue={handleGetNewTaskInputValue}
           onCreateNewTask={handleCreateNewTask}
         />
 
         <UpdateTaskModal 
-          handleUpdateTask={handleUpdateTask}
-          selectedTask={selectedTask?.name}
+          onUpdateTask={handleUpdateTask}
         />
       </div>
     </>

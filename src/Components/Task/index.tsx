@@ -3,48 +3,74 @@ import { FaTrashAlt } from "react-icons/fa";
 import { useModalContext } from "../../Context/ModalContex";
 import { Alert } from "../Alert";
 
+type Task = {
+  id: number;
+  name: string;
+}
+
 interface TaskProps {
-  task: { id: number; name: string };
-  handleDeleteTask: (taskId: number) => void;
-  handleGetSelectedTask: (taskName: string, taskId: number) => void;
+  task: Task;
+  onDeleteTask: (taskId: number) => void;
+  onGetSelectedTask: (selectedTask: Task) => void;
 }
 
 export function Task({
   task,
-  handleDeleteTask,
-  handleGetSelectedTask,
+  onDeleteTask,
+  onGetSelectedTask,
 }: TaskProps) {
   const [isChecked, setIsChecked] = useState(false);
   const [activeAlert, setActiveAlert] = useState(false);
 
   const { handleOpenUpdateTaskModal } = useModalContext();
 
+  function handleOpenAlert() {
+    setActiveAlert(true)
+  }
+
+  function handleCloseAlert() {
+    setActiveAlert(false)
+  }
+
+  function handleDeleteTask() {
+    onDeleteTask(task.id)
+    setActiveAlert(false)
+  }
+
+  function handleCheckTask() {
+    setIsChecked(true)
+  }
+
+  const taskInScreen = (
+    <span onClick={handleOpenUpdateTaskModal} 
+    className="cursor-pointer hover:brightness-75 transition-all"
+    >
+      {task.name}
+    </span>
+  )
+
+  const taskIsCompleted = (
+    <span className="line-through text-zinc-300 dark:text-zinc-600">
+      {task.name}
+    </span>
+  )
+
   return (
     <>
       <li
-        onClick={() => handleGetSelectedTask(task.name, task.id)}
+        onClick={() => onGetSelectedTask(task)}
         className="w-full py-3 px-6 flex items-center relative justify-between hover:brightness-90 transition-all duration-500 text-zinc-500 dark:text-zinc-200 shadow-sm rounded-full mb-4 bg-white dark:bg-zinc-800 animate-goTop "
       >
         <FaTrashAlt
           fontSize={15}
           className="cursor-pointer hover:brightness-75 transition-all"
-          onClick={() => setActiveAlert(true)}
+          onClick={handleOpenAlert}
         />
-        {!isChecked ? (
-          <span
-            onClick={handleOpenUpdateTaskModal}
-            className="cursor-pointer hover:brightness-75 transition-all"
-          >
-            {task.name}
-          </span>
-        ) : (
-          <span className="line-through text-zinc-300 dark:text-zinc-600">
-            {task.name}
-          </span>
-        )}
+        {!isChecked ? (taskInScreen) : (taskIsCompleted)}
         <input
           type="checkbox"
-          onClick={() => setIsChecked(true)}
+          className="cursor-pointer"
+          onClick={handleCheckTask}
           checked={isChecked && task === task}
           readOnly
         />
@@ -52,9 +78,8 @@ export function Task({
 
       <Alert
         activeAlert={activeAlert}
-        handleDeleteTask={handleDeleteTask}
-        taskId={task.id}
-        setActiveAlert={setActiveAlert}
+        onDeleteTask={handleDeleteTask}
+        onCloseAlert={handleCloseAlert}
       />
     </>
   );

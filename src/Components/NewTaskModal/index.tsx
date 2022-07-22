@@ -1,18 +1,19 @@
-import React from "react";
+import { ChangeEvent } from "react";
 import { useModalContext } from "../../Context/ModalContex";
 
 interface NewTaskModalProps {
   newTaskInputValue: string;
-  setNewTaskInputValue: React.Dispatch<React.SetStateAction<string>>;
-  onCreateNewTask: (newTask: string) => void;
+  onCreateNewTask: () => void;
+  onGetNewTaskInputValue: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export function NewTaskModal({
   onCreateNewTask,
   newTaskInputValue,
-  setNewTaskInputValue,
+  onGetNewTaskInputValue
 }: NewTaskModalProps) {
   const { isNewTaskModalOpen, handleCloseModal } = useModalContext();
+  const isInputEmpty = newTaskInputValue.length === 0
 
   return (
     <>
@@ -34,22 +35,22 @@ export function NewTaskModal({
                 id="task"
                 type="text"
                 className="px-4 py-2 rounded-md dark:text-zinc-200 bg-zinc-200 dark:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 dark:focus:ring-offset-zinc-800 "
-                value={newTaskInputValue}
-                onChange={(e) => setNewTaskInputValue(e.target.value)}
                 maxLength={30}
+                value={newTaskInputValue}
+                onChange={onGetNewTaskInputValue}
               />
             </div>
             <div className="flex gap-3 text-white ">
               <button
-                onClick={() => onCreateNewTask(newTaskInputValue)}
                 className="w-full py-2 rounded-full bg-blue-500 hover:bg-blue-400 transition-all disabled:cursor-not-allowed disabled:hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 dark:focus:ring-offset-zinc-800 "
-                disabled={newTaskInputValue.length === 0}
+                disabled={isInputEmpty}
+                onClick={onCreateNewTask}
               >
                 Create
               </button>
               <button
-                onClick={handleCloseModal}
                 className="w-full py-2 rounded-full bg-gray-400 hover:brightness-75 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 dark:focus:ring-offset-zinc-800 "
+                onClick={handleCloseModal}
               >
                 Cancel
               </button>
